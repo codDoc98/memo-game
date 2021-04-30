@@ -27,12 +27,12 @@ let anime=[
     "anime/16.png",
     "anime/17.png",
     "anime/18.png",
-    "anime/19.png",
+    "anime/19.jpg",
     "anime/20.png",
-    "anime/21.png",
+    "anime/21.jpg",
     "anime/22.png",
     "anime/23.png",
-    "anime/24.png" 
+    "anime/24.jpg" 
 ];
 let shinchan=[
     "shinchan/1.jpg",
