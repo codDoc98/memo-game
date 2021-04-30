@@ -188,7 +188,7 @@ designButton.forEach(design => design.addEventListener('click', addDesign));
 //functions
 function addCards(event)
 {
-    if(!event.target.classList.contains("disable")){
+    if(!event.target.classList.contains("disable") && !event.target.classList.contains("selected") ){
      event.target.classList.add("selected");   
     if(event.target.classList.contains("one")){
         index=0; loopSize2=8;}
@@ -240,7 +240,7 @@ function cardo(event)
     alert("select anyone game dimension first- 4X4, 4X6, 4X8, 6X8"); 
     return;}
     const clas = event.target.className;
-    if(!clas=="disable"){
+    if(clas!="disable" && clas!="selected"){
     if(clas=="four-same"&& (index==2 || index==3)){
         match=4;
         event.target.classList.add("selected"); 
