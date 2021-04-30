@@ -240,6 +240,7 @@ function cardo(event)
     alert("select anyone game dimension first- 4X4, 4X6, 4X8, 6X8"); 
     return;}
     const clas = event.target.className;
+    if(!clas=="disable"){
     if(clas=="four-same"&& (index==2 || index==3)){
         match=4;
         event.target.classList.add("selected"); 
@@ -249,7 +250,7 @@ function cardo(event)
         document.getElementsByClassName("four-same")[0].classList.add("disable");}
     if(clas=="four-same"&& (index==0 || index==1))
         alert("4 card game is for 4X8 and 6X8");
-    
+    }
 
 };
 
