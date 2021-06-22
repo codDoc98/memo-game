@@ -202,11 +202,11 @@ cursor:not-allowed;
     }
     .card{
     width: 20%;
-    height: 75px;
+    height: 72px;
     }
     .card > img{
-    height: 75px;
-    width: 75px;
+    height: 100%;
+    width: 100%;
     }
 .card-match{
     width:10%;
