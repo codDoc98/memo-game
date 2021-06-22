@@ -8,6 +8,9 @@ let moves=0;
 let index=-1;
 let match=2;
 let loopSize2=0, loopSize4=0;
+let bstScore;
+let time;
+document.getElementById("best").innerHTML=localStorage.getItem("best");
 let anime=[
     "anime/1.png",
     "anime/2.png",
@@ -397,8 +400,11 @@ function check(counter){
     });
     if(win==cardDiv.length){
     var d2=parseInt(Date.now());
-       var time = getTime(d2-d1); 
-        alert("Time Taken: "+time+"\nYou win : Press Play Again! ");}
+        time = getTime(d2-d1); 
+        bestscore();
+        alert("Time Taken: "+time+"\nYou win : Press Play Again! ");
+        ;  }
+      
     win=0;    
     counter.length=0;    
 };
@@ -411,9 +417,19 @@ function getTime(duration){
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-  return hours + ":" + minutes + ":" + seconds ;
+  return minutes + ":" + seconds ;
 }
 
+function bestscore(){
+    var prevTime=localStorage.getItem("ptime");
+    if(prevTime>=time || prevTime==null){
+        localStorage.setItem("ptime",time);
+    bstScore=moves +", " +time;
+    localStorage.setItem("best", bstScore);
+    document.getElementById("best").innerHTML=localStorage.getItem("best");
+;}
+
+}
 function playAgain(){
     location.reload();
 }
