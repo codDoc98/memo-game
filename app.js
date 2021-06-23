@@ -8,9 +8,8 @@ let moves=0;
 let index=-1;
 let match=2;
 let loopSize2=0, loopSize4=0;
-let bstScore;
 let time;
-document.getElementById("best").innerHTML=localStorage.getItem("best");
+let maxmov=0;
 let anime=[
     "anime/1.png",
     "anime/2.png",
@@ -212,7 +211,7 @@ function addCards(event)
                cardDiv.classList.add("card" );
                rowDiv.appendChild(cardDiv);
            }
-           playground.appendChild(rowDiv);
+           playground.appendChild(rowDiv);  
         }
     }
     else{
@@ -233,7 +232,8 @@ function addCards(event)
             button.classList.add("disable");
     })
 
-      cards=[...document.querySelectorAll('.card')];      
+      cards=[...document.querySelectorAll('.card')];
+      max();      
     }    
 };
 
@@ -254,8 +254,30 @@ function cardo(event)
     if(clas=="four-same"&& (index==0 || index==1))
         alert("4 card game is for 4X8 and 6X8");
     }
+    max();
 
 };
+
+function max(){
+    if(match==2){
+        if(index==0)
+            maxmov=12;
+        if(index==1)   
+            maxmov=20;
+        if(index==2)
+            maxmov=30;    
+        if(index==3) 
+            maxmov=45;   
+    }
+    else{
+        if(index==2)
+            maxmov=30;    
+        if(index==3) 
+            maxmov=70;
+    }
+    document.getElementById("max").innerHTML=maxmov;
+}
+
 
 function addDesign(event){
     if(index==-1){
@@ -401,9 +423,11 @@ function check(counter){
     if(win==cardDiv.length){
     var d2=parseInt(Date.now());
         time = getTime(d2-d1); 
-        bestscore();
-        alert("Time Taken: "+time+"\nYou win : Press Play Again! ");
-        ;  }
+        if(moves<=maxmov)
+            alert("Time Taken: "+time+"\nYou win : Press Play Again! ");
+        else
+        alert("Time Taken: "+time+"\nYou lose : Press Play Again! ");
+    }
       
     win=0;    
     counter.length=0;    
@@ -418,17 +442,6 @@ function getTime(duration){
   seconds = (seconds < 10) ? "0" + seconds : seconds;
 
   return minutes + ":" + seconds ;
-}
-
-function bestscore(){
-    var prevTime=localStorage.getItem("ptime");
-    if(prevTime>=time || prevTime==null){
-        localStorage.setItem("ptime",time);
-    bstScore=moves +", " +time;
-    localStorage.setItem("best", bstScore);
-    document.getElementById("best").innerHTML=localStorage.getItem("best");
-;}
-
 }
 function playAgain(){
     location.reload();
